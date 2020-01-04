@@ -24,9 +24,24 @@ Expressin asentaminen ja skeeman rakentelua
 Asensin kurssin luvun 2 mukaisesti alustavan RESTin ja asensin tarvittavat riippuvuudet.
 Lisäksi paljon meni aikaa oppikirjan skeeman rakenteluun. 
 
-29.12.
+30.12.2020
 Bodyparser 
 2 t
-Body-parser-kirjaston asentaminen ja Postamanilla testaaminen
+Body-parser-kirjaston asentaminen ja Postmanilla testaaminen
+
+1.1.2020
+Herokun tutkimista ja kurssimateriaalin kertaamista.
+3 t
+
+2.1.2020
+Julkaisin alustavan version Herokuun. 
+3 t
+
+= 17 tuntia (1op)
+
+3.1.2020
+Rakensin MongoDB:n Atlakseen. Pyörittelin eriaisia vaihtoehtoja kappaleen ja luvun skeemojen suhteen. 
+4 t
+
 
 
