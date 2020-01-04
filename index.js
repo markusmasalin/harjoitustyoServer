@@ -1,6 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const Chapter = require('./models/chapter')
 const cors = require('cors')
 
 app.use(cors())
@@ -55,56 +57,40 @@ let chapters = [
       },
   ]
    
-  app.get('/chapters', (req, res) => {
+  app.get('/api/chapters', (req, res) => {
     res.json(chapters)
   })
 
-  app.get('/chapters/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const chapter = chapters.find(chapter => chapter.id === id)
-    
-    if (chapter) {
-      response.json(chapter)
-    } else {
-      response.status(404).end()
-    }
+  app.get('/api/chapters/:id', (request, response) => {
+    Chapter.findById(request.params.id).then(chapter => {
+        response.json(chapter.toJSON())
+    })
   })
 
-  app.delete('/chapter/:id', (request, response) => {
+  app.delete('/api/chapter/:id', (request, response) => {
+    Chapter.findById(request.params.id).then(chapter => {
+        response.json(chapter.toJSON())
+    })
     const id = Number(request.params.id)
     chapter = chapters.filter(chapter => chapter.id !== id)
   
     response.status(204).end()
   })
 
-  app.post('/chapter', (request, response) => {
+  app.post('/api/chapter', (request, response) => {
     const body = request.body
-
-    if (!body.content) {
-        return response.status(400).json({ 
-        error: 'content missing' 
-        })
-    }
-
-    const maxId = chapters.length > 0
-    ? Math.max(...chapters.map(c => c.id)) 
-    : 0
-
- 
-
-  const chapter = {
-    part: body.part,
-    chapterNumber: body.chapterNumber,
-    chapterName: body.chapterNumber,
-    chapterElements: body.chapterElements,
-    id: generateId(),
-  }
+    console.log(body, 'body')
+    
+    const chapter = new Chapter({
+        part: body.part,
+        chapterNumber: body.chapterNumber,
+        chapterName: body.chapterName,
+        chapterElements: body.chapterElements,
+    })
+    chapter.save().then(savedChapter => {
+        response.json(savedChapter.toJSON())
+    })
   
-  chapters = chapters.concat(chapter)
-
-    console.log(chapter)
-  
-    response.json(chapter)
   })
 
   
