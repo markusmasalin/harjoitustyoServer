@@ -1,0 +1,36 @@
+const config = require('./utils/config')
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const cors = require('cors')
+const chaptersRouter = require('./controllers/chapters')
+const partsRouter = require('./controllers/parts')
+const middleware = require('./utils/middleware')
+const mongoose = require('mongoose')
+
+console.log('connecting to', config.MONGODB_URI)
+
+mongoose.connect(config.MONGODB_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,   
+  useFindAndModify: false     
+})
+  .then(() => {
+    console.log('connected to MongoDB app.js')
+  })
+  .catch((error) => {
+    console.log('error connection to MongoDB:', error.message)
+  })
+
+app.use(cors())
+app.use(express.static('build'))
+app.use(bodyParser.json())
+app.use(middleware.requestLogger)
+
+app.use('/api/chapters', chaptersRouter)
+app.use('/api/parts', partsRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+
+module.exports = app

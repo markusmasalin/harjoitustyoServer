@@ -1,9 +1,7 @@
 const mongoose = require('mongoose')
 
 const chapterElementSchema = new mongoose.Schema({
-    content: String,
-    link: String, 
-    
+    text: String,
   })
 
 

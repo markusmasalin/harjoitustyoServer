@@ -43,5 +43,13 @@ Julkaisin alustavan version Herokuun.
 Rakensin MongoDB:n Atlakseen. Pyörittelin eriaisia vaihtoehtoja kappaleen ja luvun skeemojen suhteen. 
 4 t
 
+4.1.2020
+Tein linttauksen backendiin. Muutin skeemoja ja siirsin koodin app.js indexistä. 
+4t
 
+5.1.2020 ja 6.1.2020
+Yritin saada lukujen ja kappaleiden välille yhteyden backendin kontrollereissa. Sain sen lopulta väännettyä niin, 
+että kappaleissa on viite lukuihin ja toisin päin. 
+9t
 
+= 18 tuntia (1op)
